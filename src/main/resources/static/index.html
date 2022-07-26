@@ -5,11 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<h1><a href="All_Actors">View Film List</a></h1>
-<form action = "/All_Actors" method="GET" id="anyname">
+<h1><a href="Sakila/All_Actors">View Actor List</a></h1>
+<form action = "/Sakila/Get_Actor_By_Names" method="GET" id="anyname">
     <div>
-        <label for="nameField">Enter name</label>
-        <input name="name" id="nameField">
+        <label for="firstName">Enter first name of actor</label>
+        <input name="firstname" id="firstName">
+        <label for="lastName">Enter last name of actor</label>
+        <input name="lastname" id="lastName">
         <button>Submit</button>
     </div>
 </form>

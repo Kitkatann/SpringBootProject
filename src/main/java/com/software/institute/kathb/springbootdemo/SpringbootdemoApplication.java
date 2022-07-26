@@ -39,6 +39,13 @@ public class SpringbootdemoApplication {
 		return actorRepository.findAll();
 	}
 
+	@GetMapping("/Get_Actor_By_Names")
+	public @ResponseBody
+	Actor getActorByFirstAndLastName(@RequestParam String firstname, @RequestParam String lastname){
+		return actorRepository.findByLastnameAndFirstname(firstname, lastname);
+	}
+
+
 	@DeleteMapping("/Delete_Actor_By_Id")
 	public @ResponseBody
 	void deleteActorById(@RequestParam int id){
