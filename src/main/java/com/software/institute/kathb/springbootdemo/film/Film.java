@@ -1,5 +1,6 @@
 package com.software.institute.kathb.springbootdemo.film;
 
+import com.software.institute.kathb.springbootdemo.FilmActor.FilmActor;
 import com.software.institute.kathb.springbootdemo.actor.Actor;
 import com.software.institute.kathb.springbootdemo.category.Category;
 
@@ -51,13 +52,9 @@ public class Film {
     )
     private Set<Category> filmCategories;
 
-    @ManyToMany
-    @JoinTable(
-            name= "film_actor",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id")
-    )
-    private Set<Actor> filmActors;
+    @OneToMany(mappedBy = "film")
+    private Set<FilmActor> filmActors;
+
 
     public Film(String title, int languageId, int rentalDuration, double rentalRate, double replacementCost, String lastUpdate)
     {
@@ -183,11 +180,4 @@ public class Film {
         this.filmCategories = filmCategories;
     }
 
-    public Set<Actor> getFilmActors() {
-        return filmActors;
-    }
-
-    public void setFilmActors(Set<Actor> filmActors) {
-        this.filmActors = filmActors;
-    }
 }

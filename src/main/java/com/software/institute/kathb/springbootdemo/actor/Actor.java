@@ -1,5 +1,6 @@
 package com.software.institute.kathb.springbootdemo.actor;
 
+import com.software.institute.kathb.springbootdemo.FilmActor.FilmActor;
 import com.software.institute.kathb.springbootdemo.film.Film;
 
 import javax.persistence.*;
@@ -21,8 +22,8 @@ public class Actor {
     @Column(name="last_name")
     private String lastName;
 
-    @ManyToMany(mappedBy = "filmActors")
-    Set<Film> actorFilms;
+    @OneToMany(mappedBy = "actor")
+    private Set<FilmActor> actorFilms;
 
     public Actor(String firstName, String lastName){
         this.firstName=firstName;
@@ -57,4 +58,5 @@ public class Actor {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }

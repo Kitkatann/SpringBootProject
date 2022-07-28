@@ -50,12 +50,4 @@ public class FilmController {
         return filmRepository.findAll();
     }
 
-    @GetMapping(params = {"actorFirstName", "actorLastName"})
-    public @ResponseBody
-    List<Film> getFilmsByActor(@RequestParam(name = "actorFirstName") String firstName,
-                               @RequestParam(name = "actorLastName") String lastName)
-    {
-        return filmRepository.findByFilmActorsFirstNameAndFilmActorsLastName(firstName, lastName);
-    }
-
 }
