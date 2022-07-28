@@ -5,46 +5,52 @@
     <title>Title</title>
 </head>
 <body>
-<h1><a href="Sakila/All_Actors">View Actor List</a></h1>
-<form action = "/Sakila/Get_Actor_By_Names" method="GET" id="getActorForm">
+<h1>Search for a film</h1>
+<h2>Search by title or genre</h2>
+<form action = "/film" method="GET" id="getFilmByTitleForm">
     <div>
-        <label for="firstName">Enter first name of actor</label>
-        <input name="firstname" id="firstName">
-        <label for="lastName">Enter last name of actor</label>
-        <input name="lastname" id="lastName">
-        <button>Submit</button>
-    </div>
-</form>
-
-<h1><a href="Sakila/All_Films">View Film List</a></h1>
-
-
-<form action = "/Sakila/Get_Films_By_Category" method="GET" id="getFilmByCategory">
-    <div>
-        <label for="categoryName">Enter the genre</label>
-        <input name="categoryName" id="categoryName">
-        <button>Submit</button>
-    </div>
-</form>
-
-<form action = "/Sakila/Get_Films_By_Actor" method="GET" id="getFilmByActor">
-    <div>
-        <label for="firstName">Enter first name of actor</label>
-        <input name="firstName" id="firstNameActorFilm">
-        <label for="lastName">Enter last name of actor</label>
-        <input name="lastName" id="lastNameActorFilm">
-        <button>Submit</button>
-    </div>
-</form>
-
-
-<form action = "/Sakila/Get_Film_By_Title" method="GET" id="getFilmForm">
-    <div>
-        <label for="title">Enter the title</label>
+        <label for="title">Title: </label>
         <input name="title" id="title">
+        <button>Search</button>
+    </div>
+</form>
+
+<form action = "/film" method="GET" id="getFilmByCategory">
+    <div>
+        <label for="categoryName">Genre: </label>
+        <input name="categoryName" id="categoryName">
+        <button>Search</button>
+    </div>
+</form>
+<h2>Search by actor</h2>
+<form action = "/film" method="GET" id="getFilmByActor">
+    <div>
+        <label for="firstNameActorFilm">Enter first name of actor</label>
+        <input name="actorFirstName" id="firstNameActorFilm">
+        <label for="lastNameActorFilm">Enter last name of actor</label>
+        <input name="actorLastName" id="lastNameActorFilm">
         <button>Submit</button>
     </div>
 </form>
+
+<h1>Search for an actor</h1>
+<form action = "/actor" method="GET" id="getActorForm">
+    <div>
+        <label for="actorFirstName">Enter first name of actor</label>
+        <input name="actorFirstName" id="actorFirstName">
+        <label for="actorLastName">Enter last name of actor</label>
+        <input name="actorLastName" id="actorLastName">
+        <button>Submit</button>
+    </div>
+</form>
+
+
+
+
+
+
+
+
 
 </body>
 </html>

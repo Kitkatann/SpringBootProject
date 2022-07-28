@@ -13,16 +13,16 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
     private String name;
-    private String last_update;
+    private String lastUpdate;
 
     @ManyToMany(mappedBy = "filmCategories")
     private Set<Film> categoryFilms;
 
-    public int getCategory_id() {
+    public int getCategoryId() {
         return categoryId;
     }
 
-    public void setCategory_id(int categoryId) {
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -34,12 +34,12 @@ public class Category {
         this.name = name;
     }
 
-    public String getLast_update() {
-        return last_update;
+    public String getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_update(String last_update) {
-        this.last_update = last_update;
+    public void setLastUpdate(String last_update) {
+        this.lastUpdate = lastUpdate;
     }
 
 }

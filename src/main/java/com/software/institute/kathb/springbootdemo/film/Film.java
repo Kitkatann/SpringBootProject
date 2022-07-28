@@ -12,20 +12,36 @@ public class Film {
     @Id
     @Column(name="film_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int film_id;
+    private int filmId;
 
     private String title;
     private String description;
-    private String release_year;
-    private int language_id;
-    private Integer original_language_id;
-    private int rental_duration;
-    private double rental_rate;
+
+    @Column(name="release_year")
+    private String releaseYear;
+
+    @Column(name="language_id")
+    private int languageId;
+
+    @Column(name="original_language_id")
+    private Integer originalLanguageId;
+
+    @Column(name="rental_duration")
+    private int rentalDuration;
+
+    @Column(name="rental_rate")
+    private double rentalRate;
     private Integer length;
-    private double replacement_cost;
+
+    @Column(name="replacement_cost")
+    private double replacementCost;
     private String rating;
-    private String special_features;
-    private String last_update;
+
+    @Column(name="special_features")
+    private String specialFeatures;
+
+    @Column(name="last_update")
+    private String lastUpdate;
 
     @ManyToMany
     @JoinTable(
@@ -43,24 +59,24 @@ public class Film {
     )
     private Set<Actor> filmActors;
 
-    public Film(String title, int language_id, int rental_duration, double rental_rate, double replacement_cost, String last_update)
+    public Film(String title, int languageId, int rentalDuration, double rentalRate, double replacementCost, String lastUpdate)
     {
         this.title = title;
-        this.language_id = language_id;
-        this.rental_duration = rental_duration;
-        this.rental_rate = rental_rate;
-        this.replacement_cost = replacement_cost;
-        this.last_update = last_update;
+        this.languageId = languageId;
+        this.rentalDuration = rentalDuration;
+        this.rentalRate = rentalRate;
+        this.replacementCost = replacementCost;
+        this.lastUpdate = lastUpdate;
     }
 
     public Film() {}
 
-    public int getFilm_id() {
-        return film_id;
+    public int getFilmId() {
+        return filmId;
     }
 
-    public void setFilm_id(int film_id) {
-        this.film_id = film_id;
+    public void setFilmId(int filmId) {
+        this.filmId = filmId;
     }
 
     public String getTitle() {
@@ -79,44 +95,44 @@ public class Film {
         this.description = description;
     }
 
-    public String getRelease_year() {
-        return release_year;
+    public String getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setRelease_year(String release_year) {
-        this.release_year = release_year;
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
-    public int getLanguage_id() {
-        return language_id;
+    public int getLanguageId() {
+        return languageId;
     }
 
-    public void setLanguage_id(int language_id) {
-        this.language_id = language_id;
+    public void setLanguageId(int languageId) {
+        this.languageId = languageId;
     }
 
-    public Integer getOriginal_language_id() {
-        return original_language_id;
+    public Integer getOriginalLanguageId() {
+        return originalLanguageId;
     }
 
-    public void setOriginal_language_id(Integer original_language_id) {
-        this.original_language_id = original_language_id;
+    public void setOriginalLanguageId(Integer originalLanguageId) {
+        this.originalLanguageId = originalLanguageId;
     }
 
-    public int getRental_duration() {
-        return rental_duration;
+    public int getRentalDuration() {
+        return rentalDuration;
     }
 
-    public void setRental_duration(int rental_duration) {
-        this.rental_duration = rental_duration;
+    public void setRentalDuration(int rentalDuration) {
+        this.rentalDuration = rentalDuration;
     }
 
-    public double getRental_rate() {
-        return rental_rate;
+    public double getRentalRate() {
+        return rentalRate;
     }
 
-    public void setRental_rate(double rental_rate) {
-        this.rental_rate = rental_rate;
+    public void setRentalRate(double rentalRate) {
+        this.rentalRate = rentalRate;
     }
 
     public Integer getLength() {
@@ -127,12 +143,12 @@ public class Film {
         this.length = length;
     }
 
-    public double getReplacement_cost() {
-        return replacement_cost;
+    public double getReplacementCost() {
+        return replacementCost;
     }
 
-    public void setReplacement_cost(double replacement_cost) {
-        this.replacement_cost = replacement_cost;
+    public void setReplacementCost(double replacementCost) {
+        this.replacementCost = replacementCost;
     }
 
     public String getRating() {
@@ -143,20 +159,20 @@ public class Film {
         this.rating = rating;
     }
 
-    public String getSpecial_features() {
-        return special_features;
+    public String getSpecialFeatures() {
+        return specialFeatures;
     }
 
-    public void setSpecial_features(String special_features) {
-        this.special_features = special_features;
+    public void setSpecialFeatures(String specialFeatures) {
+        this.specialFeatures = specialFeatures;
     }
 
-    public String getLast_update() {
-        return last_update;
+    public String getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_update(String last_update) {
-        this.last_update = last_update;
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     public Set<Category> getFilmCategories() {

@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface FilmRepository extends CrudRepository<Film, Integer> {
 
-    Iterable<Film> findByTitle(String title);
+    Iterable<Film> findByTitleContainingOrderByTitle(String title);
 
     List<Film> findByFilmCategoriesName(String categoryName);
+
+    List<Film> findByTitleContainingAndFilmCategoriesNameOrderByTitle(String title, String categoryName);
 
     List<Film> findByFilmActorsFirstNameAndFilmActorsLastName(String firstName, String lastName);
 }

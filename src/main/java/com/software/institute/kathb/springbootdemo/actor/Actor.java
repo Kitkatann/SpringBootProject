@@ -12,7 +12,7 @@ public class Actor {
     @Id
     @Column(name="actor_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int actor_id;
+    private int actorId;
 
     //Attributes
     @Column(name="first_name")
@@ -34,19 +34,19 @@ public class Actor {
 
     //Getter and Setters
 
-    public int getActor_id() {
-        return actor_id;
+    public int getActorId() {
+        return actorId;
     }
 
-    public void setActor_id(int actor_id) {
-        this.actor_id = actor_id;
+    public void setActorId(int actorId) {
+        this.actorId = actorId;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String first_name) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -54,7 +54,7 @@ public class Actor {
         return lastName;
     }
 
-    public void setLastName(String last_name) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 }
