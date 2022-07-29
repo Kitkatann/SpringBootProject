@@ -1,14 +1,14 @@
 package com.software.institute.kathb.springbootdemo.film;
 
-import com.software.institute.kathb.springbootdemo.FilmActor.FilmActor;
-import com.software.institute.kathb.springbootdemo.actor.Actor;
+import com.software.institute.kathb.springbootdemo.filmactor.FilmActor;
 import com.software.institute.kathb.springbootdemo.category.Category;
+import com.software.institute.kathb.springbootdemo.language.Language;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="film")
+@Table(name= "film")
 public class Film {
     @Id
     @Column(name="film_id")
@@ -22,10 +22,18 @@ public class Film {
     private String releaseYear;
 
     @Column(name="language_id")
-    private int languageId;
+    private Integer languageId;
+
+    @ManyToOne
+    @JoinColumn(name = "language_id", insertable = false, updatable = false)
+    private Language filmLanguage;
 
     @Column(name="original_language_id")
     private Integer originalLanguageId;
+
+    @ManyToOne
+    @JoinColumn(name = "original_language_id", insertable = false, updatable = false)
+    private Language originalFilmLanguage;
 
     @Column(name="rental_duration")
     private int rentalDuration;
@@ -56,9 +64,29 @@ public class Film {
     private Set<FilmActor> filmActors;
 
 
-    public Film(String title, int languageId, int rentalDuration, double rentalRate, double replacementCost, String lastUpdate)
+    public Film(String title, String description, String releaseYear, Integer languageId, Integer originalLanguageId,
+                int rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
+                String specialFeatures, String lastUpdate)
     {
         this.title = title;
+        this.description = description;
+        this.releaseYear = releaseYear;
+        this.languageId = languageId;
+        this.originalLanguageId = originalLanguageId;
+        this.rentalDuration = rentalDuration;
+        this.rentalRate = rentalRate;
+        this.length = length;
+        this.replacementCost = replacementCost;
+        this.rating = rating;
+        this.specialFeatures = specialFeatures;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Film(String title, String description, Integer languageId, int rentalDuration, double rentalRate,
+                double replacementCost, String lastUpdate)
+    {
+        this.title = title;
+        this.description = description;
         this.languageId = languageId;
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;
@@ -100,16 +128,16 @@ public class Film {
         this.releaseYear = releaseYear;
     }
 
-    public int getLanguageId() {
-        return languageId;
+    public Language getFilmLanguage() {
+        return filmLanguage;
     }
 
-    public void setLanguageId(int languageId) {
+    public void setLanguageId(Integer languageId) {
         this.languageId = languageId;
     }
 
-    public Integer getOriginalLanguageId() {
-        return originalLanguageId;
+    public Language getOriginalFilmLanguage() {
+        return originalFilmLanguage;
     }
 
     public void setOriginalLanguageId(Integer originalLanguageId) {

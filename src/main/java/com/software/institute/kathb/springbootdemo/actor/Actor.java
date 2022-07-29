@@ -1,7 +1,6 @@
 package com.software.institute.kathb.springbootdemo.actor;
 
-import com.software.institute.kathb.springbootdemo.FilmActor.FilmActor;
-import com.software.institute.kathb.springbootdemo.film.Film;
+import com.software.institute.kathb.springbootdemo.filmactor.FilmActor;
 
 import javax.persistence.*;
 import java.util.Set;

@@ -1,7 +1,9 @@
 package com.software.institute.kathb.springbootdemo.actor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -34,24 +36,22 @@ public class ActorController {
     public @ResponseBody String addNewActor(@RequestParam String actorFirstName,
                                             @RequestParam String actorLastName)
     {
-        Actor a = new Actor(actorFirstName, actorLastName);
+        Actor actor = new Actor(actorFirstName, actorLastName);
         System.out.println(actorFirstName + " " + actorLastName);
-        actorRepository.save(a);
+        actorRepository.save(actor);
         return "saved";
     }
 
     @PatchMapping(params = {"actorId", "actorFirstName", "actorLastName"})
     public @ResponseBody String updateActorById(@RequestParam int actorId, @RequestParam String actorFirstName, @RequestParam String actorLastName)
     {
-        Optional<Actor> actor = actorRepository.findById(actorId);
-        if (!actor.isEmpty())
-        {
-            actor.get().setFirstName(actorFirstName);
-            actor.get().setLastName(actorLastName);
-            actorRepository.save(actor.get());
-            return "saved";
-        }
-        return "not saved";
+        Actor actor = actorRepository
+                .findById(actorId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No actor exists with that id."));
+        actor.setFirstName(actorFirstName);
+        actor.setLastName(actorLastName);
+        actorRepository.save(actor);
+        return "saved";
     }
 
     @DeleteMapping(params = {"actorId"})

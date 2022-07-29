@@ -1,4 +1,4 @@
-package com.software.institute.kathb.springbootdemo.FilmActor;
+package com.software.institute.kathb.springbootdemo.filmactor;
 
 import com.software.institute.kathb.springbootdemo.actor.Actor;
 import com.software.institute.kathb.springbootdemo.actor.ActorRepository;
@@ -7,7 +7,6 @@ import com.software.institute.kathb.springbootdemo.film.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

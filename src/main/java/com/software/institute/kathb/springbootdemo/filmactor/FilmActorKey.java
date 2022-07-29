@@ -1,4 +1,4 @@
-package com.software.institute.kathb.springbootdemo.FilmActor;
+package com.software.institute.kathb.springbootdemo.filmactor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

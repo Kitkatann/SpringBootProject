@@ -1,4 +1,4 @@
-package com.software.institute.kathb.springbootdemo.FilmActor;
+package com.software.institute.kathb.springbootdemo.filmactor;
 
 import com.software.institute.kathb.springbootdemo.actor.Actor;
 import com.software.institute.kathb.springbootdemo.film.Film;
