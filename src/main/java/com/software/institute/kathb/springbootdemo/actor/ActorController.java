@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/actor")
@@ -30,7 +30,12 @@ public class ActorController {
         return actorRepository.findAll();
     }
 
-
+    @GetMapping(params = {"filmId"})
+    public @ResponseBody
+    List<Actor> GetFilmActors(@RequestParam(name = "filmId") Integer filmId)
+    {
+        return actorRepository.findByActorFilmsFilmFilmId(filmId);
+    }
 
     @PostMapping(params = {"actorFirstName", "actorLastName"})
     public @ResponseBody String addNewActor(@RequestParam String actorFirstName,

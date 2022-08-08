@@ -1,6 +1,6 @@
 package com.software.institute.kathb.springbootdemo.film;
 
-import com.software.institute.kathb.springbootdemo.language.Language;
+import com.software.institute.kathb.springbootdemo.actor.Actor;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

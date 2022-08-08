@@ -1,11 +1,16 @@
 package com.software.institute.kathb.springbootdemo.film;
 
+
+import com.software.institute.kathb.springbootdemo.category.Category;
+import com.software.institute.kathb.springbootdemo.category.CategoryRepository;
 import com.software.institute.kathb.springbootdemo.language.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/film")
@@ -16,10 +21,14 @@ public class FilmController {
     @Autowired
     private final LanguageRepository languageRepository;
 
-    public FilmController(FilmRepository filmRepository, LanguageRepository languageRepository)
+    @Autowired
+    private final CategoryRepository categoryRepository;
+
+    public FilmController(FilmRepository filmRepository, LanguageRepository languageRepository, CategoryRepository categoryRepository)
     {
         this.filmRepository = filmRepository;
         this.languageRepository = languageRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping(params = {"title"})
@@ -89,6 +98,26 @@ public class FilmController {
         }
         Film film = new Film(title, description, releaseYear, languageId, originalLanguageId, rentalDuration, rentalRate,
                 length, replacementCost, rating, specialFeatures, lastUpdate);
+        filmRepository.save(film);
+        return "saved";
+    }
+
+    @PatchMapping(params = {"filmId", "categoryNames"})
+    public @ResponseBody String updateFilmCategories(@RequestParam int filmId, @RequestParam Set<String> categoryNames)
+    {
+        Film film = filmRepository
+                .findById(filmId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No film exists with that id."));
+        Set<Category> categories = film.getFilmCategories();
+        for (String categoryName : categoryNames)
+        {
+            Category category = categoryRepository.findByName(categoryName);
+            if (category != null && !film.getFilmCategories().contains(category))
+            {
+                categories.add(category);
+            }
+        }
+        film.setFilmCategories(categories);
         filmRepository.save(film);
         return "saved";
     }
