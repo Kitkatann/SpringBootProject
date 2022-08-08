@@ -90,13 +90,6 @@ public class FilmController {
         Film film = new Film(title, description, releaseYear, languageId, originalLanguageId, rentalDuration, rentalRate,
                 length, replacementCost, rating, specialFeatures, lastUpdate);
         filmRepository.save(film);
-
-        // add film to film category TODO
-
-        // add film to film actor TODO
-
-
-
         return "saved";
     }
 

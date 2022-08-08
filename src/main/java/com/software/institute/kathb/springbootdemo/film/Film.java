@@ -49,7 +49,7 @@ public class Film {
     @Column(name="special_features")
     private String specialFeatures;
 
-    @Column(name="last_update")
+    @Column(name="last_update", insertable=false, updatable=false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private String lastUpdate;
 
     @ManyToMany
@@ -83,7 +83,7 @@ public class Film {
     }
 
     public Film(String title, String description, Integer languageId, int rentalDuration, double rentalRate,
-                double replacementCost, String lastUpdate)
+                double replacementCost)
     {
         this.title = title;
         this.description = description;
@@ -91,7 +91,6 @@ public class Film {
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;
         this.replacementCost = replacementCost;
-        this.lastUpdate = lastUpdate;
     }
 
     public Film() {}

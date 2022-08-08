@@ -21,12 +21,13 @@ public class FilmActor {
     @JoinColumn(name = "film_id")
     Film film;
 
-    @Column(name="last_update")
+    @Column(name="last_update", insertable=false, updatable=false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     String lastUpdate;
 
     public FilmActor(Actor actor, Film film) {
         this.actor = actor;
         this.film = film;
+        id = new FilmActorKey(actor.getActorId(), film.getFilmId());
     }
 
     public FilmActor()
