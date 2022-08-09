@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/language")
 public class LanguageController {
@@ -26,7 +28,7 @@ public class LanguageController {
 
     @GetMapping(params = {"name"})
     public @ResponseBody
-    Language getByName(String name)
+    Optional<Language> getByName(String name)
     {
         return languageRepository.findByName(name);
     }

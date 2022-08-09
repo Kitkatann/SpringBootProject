@@ -3,13 +3,13 @@ package com.software.institute.kathb.springbootdemo.film;
 
 import com.software.institute.kathb.springbootdemo.category.Category;
 import com.software.institute.kathb.springbootdemo.category.CategoryRepository;
+import com.software.institute.kathb.springbootdemo.language.Language;
 import com.software.institute.kathb.springbootdemo.language.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @RestController
@@ -90,11 +90,20 @@ public class FilmController {
                       @RequestParam(name = "specialFeatures", required = false) String specialFeatures,
                       @RequestParam(name = "lastUpdate", required = false) String lastUpdate)
     {
-        Integer languageId = languageRepository.findByName(languageName).getLanguageId();
+        // make sure languageId is valid as it cannot be allowed to be null
+        Language language = languageRepository
+                .findByName(languageName)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No language exists with that name."));
+        Integer languageId = language.getLanguageId();
+
+        // original language is allowed to be null
         Integer originalLanguageId = null;
         if (originalLanguageName != null)
         {
-            originalLanguageId = languageRepository.findByName(originalLanguageName).getLanguageId();
+            Language originalLanguage = languageRepository
+                    .findByName(originalLanguageName)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No language exists with that name."));
+            originalLanguageId = originalLanguage.getLanguageId();
         }
         Film film = new Film(title, description, releaseYear, languageId, originalLanguageId, rentalDuration, rentalRate,
                 length, replacementCost, rating, specialFeatures, lastUpdate);
@@ -118,6 +127,56 @@ public class FilmController {
             }
         }
         film.setFilmCategories(categories);
+        filmRepository.save(film);
+        return "saved";
+    }
+
+    @PatchMapping
+    public @ResponseBody String updateFilmDetails(@RequestParam(name = "filmId") Integer filmId,
+                                                  @RequestParam(name = "title") String title,
+                                                  @RequestParam(name = "description", required = false) String description,
+                                                  @RequestParam(name = "releaseYear", required = false) String releaseYear,
+                                                  @RequestParam(name = "languageName") String languageName,
+                                                  @RequestParam(name = "originalLanguageName", required = false) String originalLanguageName,
+                                                  @RequestParam(name = "rentalDuration") int rentalDuration,
+                                                  @RequestParam(name = "rentalRate") double rentalRate,
+                                                  @RequestParam(name = "length", required = false) Integer length,
+                                                  @RequestParam(name = "replacementCost") double replacementCost,
+                                                  @RequestParam(name = "rating", required = false) String rating,
+                                                  @RequestParam(name = "specialFeatures", required = false) String specialFeatures,
+                                                  @RequestParam(name = "lastUpdate", required = false) String lastUpdate)
+    {
+        Film film = filmRepository
+                .findById(filmId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No film exists with that id."));
+        film.setTitle(title);
+        film.setDescription(description);
+        film.setReleaseYear(releaseYear);
+
+        // make sure languageId is valid as it cannot be allowed to be null
+        Language language = languageRepository
+                .findByName(languageName)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No language exists with that name."));
+        film.setLanguageId(language.getLanguageId());
+
+        // original language is allowed to be null
+        Integer originalLanguageId = null;
+        if (originalLanguageName != null)
+        {
+            Language originalLanguage = languageRepository
+                    .findByName(originalLanguageName)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No language exists with that name."));
+            originalLanguageId = originalLanguage.getLanguageId();
+        }
+        film.setOriginalLanguageId(originalLanguageId);
+
+        film.setRentalDuration(rentalDuration);
+        film.setRentalRate(rentalRate);
+        film.setLength(length);
+        film.setReplacementCost(replacementCost);
+        film.setRating(rating);
+        film.setSpecialFeatures(specialFeatures);
+        film.setLastUpdate(lastUpdate);
         filmRepository.save(film);
         return "saved";
     }
