@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @RestController
@@ -117,11 +118,11 @@ public class FilmController {
         Film film = filmRepository
                 .findById(filmId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No film exists with that id."));
-        Set<Category> categories = film.getFilmCategories();
+        Set<Category> categories = new HashSet<>();
         for (String categoryName : categoryNames)
         {
             Category category = categoryRepository.findByName(categoryName);
-            if (category != null && !film.getFilmCategories().contains(category))
+            if (category != null)
             {
                 categories.add(category);
             }
