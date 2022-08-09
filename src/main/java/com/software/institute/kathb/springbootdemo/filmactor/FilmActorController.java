@@ -2,6 +2,7 @@ package com.software.institute.kathb.springbootdemo.filmactor;
 
 import com.software.institute.kathb.springbootdemo.actor.Actor;
 import com.software.institute.kathb.springbootdemo.actor.ActorRepository;
+import com.software.institute.kathb.springbootdemo.category.Category;
 import com.software.institute.kathb.springbootdemo.film.Film;
 import com.software.institute.kathb.springbootdemo.film.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,13 @@ public class FilmActorController {
                 .findDistinctByFirstNameAndLastName(firstName, lastName)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No actor exists with that name"));
         return filmRepository.findByFilmActorsIdActorId(actor.getActorId());
+    }
+
+    @GetMapping()
+    public @ResponseBody
+    Iterable<FilmActor>getAllFilmActors()
+    {
+        return filmActorRepository.findAll();
     }
 
     @PostMapping(params = {"actorFirstName", "actorLastName", "filmId"})
