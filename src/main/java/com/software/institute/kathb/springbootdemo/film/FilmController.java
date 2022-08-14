@@ -1,192 +1,160 @@
 package com.software.institute.kathb.springbootdemo.film;
 
 
-import com.software.institute.kathb.springbootdemo.category.Category;
-import com.software.institute.kathb.springbootdemo.category.CategoryRepository;
-import com.software.institute.kathb.springbootdemo.language.Language;
-import com.software.institute.kathb.springbootdemo.language.LanguageRepository;
+import com.software.institute.kathb.springbootdemo.filmactor.IFilmActorService;
+import com.software.institute.kathb.springbootdemo.filmcategory.IFilmCategoryService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/film")
 public class FilmController {
-    @Autowired
-    private final FilmRepository filmRepository;
 
     @Autowired
-    private final LanguageRepository languageRepository;
-
+    private IFilmService filmService;
     @Autowired
-    private final CategoryRepository categoryRepository;
+    private IFilmActorService filmActorService;
+    @Autowired
+    private IFilmCategoryService filmCategoryService;
+    @Autowired
+    private ModelMapper modelMapper;
 
-    public FilmController(FilmRepository filmRepository, LanguageRepository languageRepository, CategoryRepository categoryRepository)
+    public FilmController(IFilmService filmService, IFilmActorService filmActorService, IFilmCategoryService filmCategoryService)
     {
-        this.filmRepository = filmRepository;
-        this.languageRepository = languageRepository;
-        this.categoryRepository = categoryRepository;
+        this.filmService = filmService;
+        this.filmActorService = filmActorService;
+        this.filmCategoryService = filmCategoryService;
     }
 
     @GetMapping(params = {"title"})
     public @ResponseBody
-    Iterable<Film> getFilmByTitle(@RequestParam(name = "title", required = false) String title)
+    List<FilmDTO> getFilmsByTitle(@RequestParam(name = "title", required = false) String title)
     {
-        if (title != null)
-        {
-            return filmRepository.findByTitleContainingOrderByTitle(title);
-        }
-        return filmRepository.findAll();
+        return filmService.getFilmsByTitle(title)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
-    @GetMapping(params = {"categoryName"})
+    @GetMapping(params = {"categoryId"})
     public @ResponseBody
-    Iterable<Film> getFilmByCategory(@RequestParam(name = "categoryName", required = false) String categoryName)
+    List<FilmDTO> getFilmsByCategory(@RequestParam(name = "categoryId") Integer categoryId)
     {
-        if (categoryName != null)
-        {
-            return filmRepository.findByFilmCategoriesName(categoryName);
-        }
-        return filmRepository.findAll();
+        return filmService.getFilmsByCategory(categoryId)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
-    @GetMapping(params = {"title", "categoryName"})
+    @GetMapping(params = {"languageId"})
     public @ResponseBody
-    Iterable<Film> getFilmsByTitleAndCategory(@RequestParam(name = "title", required = false) String title,
-                            @RequestParam(name = "categoryName", required = false) String categoryName)
+    List<FilmDTO> getFilmsByLanguage(@RequestParam(name = "languageId") Integer languageId)
     {
-        if (title != null && categoryName != null)
-        {
-            return filmRepository.findByTitleContainingAndFilmCategoriesNameOrderByTitle(title, categoryName);
-        }
-        return filmRepository.findAll();
+        return filmService.getFilmsByLanguage(languageId)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
-    @GetMapping(params = {"language"})
+    @GetMapping(params = {"actorId"})
     public @ResponseBody
-    Iterable<Film> getFilmsByLanguage(@RequestParam(name = "language") String language)
+    List<FilmDTO> getFilmsByActor(@RequestParam(name = "actorId") Integer actorId)
     {
-        if (language != null)
-        {
-            return filmRepository.findByFilmLanguageName(language);
-        }
-        return filmRepository.findAll();
+        return filmService.getFilmsByActor(actorId)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
+
     @PostMapping
     public @ResponseBody
-    String addNewFilm(@RequestParam(name = "title") String title,
-                      @RequestParam(name = "description", required = false) String description,
-                      @RequestParam(name = "releaseYear", required = false) String releaseYear,
-                      @RequestParam(name = "languageName") String languageName,
-                      @RequestParam(name = "originalLanguageName", required = false) String originalLanguageName,
-                      @RequestParam(name = "rentalDuration") int rentalDuration,
-                      @RequestParam(name = "rentalRate") double rentalRate,
-                      @RequestParam(name = "length", required = false) Integer length,
-                      @RequestParam(name = "replacementCost") double replacementCost,
-                      @RequestParam(name = "rating", required = false) String rating,
-                      @RequestParam(name = "specialFeatures", required = false) String specialFeatures,
-                      @RequestParam(name = "lastUpdate", required = false) String lastUpdate)
+    ResponseEntity<FilmDTO> createFilm(@RequestBody FilmDTO filmDTO)
     {
-        // make sure languageId is valid as it cannot be allowed to be null
-        Language language = languageRepository
-                .findByName(languageName)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No language exists with that name."));
-        Integer languageId = language.getLanguageId();
-
-        // original language is allowed to be null
-        Integer originalLanguageId = null;
-        if (originalLanguageName != null)
-        {
-            Language originalLanguage = languageRepository
-                    .findByName(originalLanguageName)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No language exists with that name."));
-            originalLanguageId = originalLanguage.getLanguageId();
-        }
-        Film film = new Film(title, description, releaseYear, languageId, originalLanguageId, rentalDuration, rentalRate,
-                length, replacementCost, rating, specialFeatures, lastUpdate);
-        filmRepository.save(film);
-        return "saved";
+        Integer filmId = filmService.createFilm(filmDTO);
+        Film film = filmService.getFilmById(filmId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(convertToDTO(film));
     }
 
-    @PatchMapping(params = {"filmId", "categoryNames"})
-    public @ResponseBody String updateFilmCategories(@RequestParam int filmId, @RequestParam Set<String> categoryNames)
+    @PatchMapping(params = {"filmId"})
+    public @ResponseBody
+    ResponseEntity<FilmDTO> updateFilm(@RequestParam Integer filmId, @RequestBody FilmDTO filmDTO)
     {
-        Film film = filmRepository
-                .findById(filmId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No film exists with that id."));
-        Set<Category> categories = new HashSet<>();
-        for (String categoryName : categoryNames)
-        {
-            Category category = categoryRepository.findByName(categoryName);
-            if (category != null)
-            {
-                categories.add(category);
-            }
-        }
-        film.setFilmCategories(categories);
-        filmRepository.save(film);
-        return "saved";
-    }
-
-    @PatchMapping
-    public @ResponseBody String updateFilmDetails(@RequestParam(name = "filmId") Integer filmId,
-                                                  @RequestParam(name = "title") String title,
-                                                  @RequestParam(name = "description", required = false) String description,
-                                                  @RequestParam(name = "releaseYear", required = false) String releaseYear,
-                                                  @RequestParam(name = "languageName") String languageName,
-                                                  @RequestParam(name = "originalLanguageName", required = false) String originalLanguageName,
-                                                  @RequestParam(name = "rentalDuration") int rentalDuration,
-                                                  @RequestParam(name = "rentalRate") double rentalRate,
-                                                  @RequestParam(name = "length", required = false) Integer length,
-                                                  @RequestParam(name = "replacementCost") double replacementCost,
-                                                  @RequestParam(name = "rating", required = false) String rating,
-                                                  @RequestParam(name = "specialFeatures", required = false) String specialFeatures,
-                                                  @RequestParam(name = "lastUpdate", required = false) String lastUpdate)
-    {
-        Film film = filmRepository
-                .findById(filmId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No film exists with that id."));
-        film.setTitle(title);
-        film.setDescription(description);
-        film.setReleaseYear(releaseYear);
-
-        // make sure languageId is valid as it cannot be allowed to be null
-        Language language = languageRepository
-                .findByName(languageName)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No language exists with that name."));
-        film.setLanguageId(language.getLanguageId());
-
-        // original language is allowed to be null
-        Integer originalLanguageId = null;
-        if (originalLanguageName != null)
-        {
-            Language originalLanguage = languageRepository
-                    .findByName(originalLanguageName)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No language exists with that name."));
-            originalLanguageId = originalLanguage.getLanguageId();
-        }
-        film.setOriginalLanguageId(originalLanguageId);
-
-        film.setRentalDuration(rentalDuration);
-        film.setRentalRate(rentalRate);
-        film.setLength(length);
-        film.setReplacementCost(replacementCost);
-        film.setRating(rating);
-        film.setSpecialFeatures(specialFeatures);
-        film.setLastUpdate(lastUpdate);
-        filmRepository.save(film);
-        return "saved";
+        filmService.updateFilm(filmId, filmDTO);
+        Film film = filmService.getFilmById(filmId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(convertToDTO(film));
     }
 
     @DeleteMapping(params = {"filmId"})
     public @ResponseBody
-    void deleteFilmById(@RequestParam int filmId)
+    void deleteFilm(@RequestParam Integer filmId)
     {
-        filmRepository.deleteById(filmId);
+        filmService.deleteFilm(filmId);
+    }
+
+    //Modify film actors
+    @PostMapping("/actors")
+    public @ResponseBody
+    void createFilmActors(@RequestParam(name = "filmId") Integer filmId,
+                          @RequestParam(name = "actorIds") Set<Integer> actorIds)
+    {
+        filmActorService.createFilmActors(filmId, actorIds);
+    }
+
+    @Transactional
+    @PatchMapping("/actors")
+    public @ResponseBody
+    void updateFilmActors(@RequestParam(name = "filmId") Integer filmId,
+                          @RequestParam(name = "actorIds") Set<Integer> actorIds)
+    {
+        filmActorService.updateFilmActors(filmId, actorIds);
+    }
+
+    @Transactional
+    @DeleteMapping("/actors")
+    public @ResponseBody
+    void deleteFilmActors(@RequestParam(name = "filmId") Integer filmId)
+    {
+        filmActorService.deleteFilmActors(filmId);
+    }
+
+    //Modify film categories
+    @PostMapping("/categories")
+    public @ResponseBody
+    void createFilmCategories(@RequestParam(name = "filmId") Integer filmId,
+                          @RequestParam(name = "categoryIds") Set<Integer> categoryIds)
+    {
+        filmCategoryService.createFilmCategories(filmId, categoryIds);
+    }
+
+    @Transactional
+    @PatchMapping("/categories")
+    public @ResponseBody
+    void updateFilmCategories(@RequestParam(name = "filmId") Integer filmId,
+                          @RequestParam(name = "categoryIds") Set<Integer> categoryIds)
+    {
+        filmCategoryService.updateFilmCategories(filmId, categoryIds);
+    }
+
+    @Transactional
+    @DeleteMapping("/categories")
+    public @ResponseBody
+    void deleteFilmCategories(@RequestParam(name = "filmId") Integer filmId)
+    {
+        filmCategoryService.deleteFilmCategories(filmId);
+    }
+
+    private FilmDTO convertToDTO(Film film) {
+        FilmDTO filmDTO = modelMapper.map(film, FilmDTO.class);
+        return filmDTO;
     }
 
 }

@@ -1,70 +1,84 @@
 package com.software.institute.kathb.springbootdemo.actor;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/actor")
 public class ActorController {
-    @Autowired
-    private final ActorRepository actorRepository;
 
-    public ActorController(ActorRepository actorRepository)
+    @Autowired
+    private IActorService actorService;
+    @Autowired
+    private ModelMapper modelMapper;
+
+
+    public ActorController(IActorService actorService)
     {
-        this.actorRepository = actorRepository;
+        this.actorService = actorService;
     }
 
-    @GetMapping(params = {"actorFirstName", "actorLastName"})
+    @GetMapping(params = {"fullName"})
     public @ResponseBody
-    Iterable<Actor> getActors(@RequestParam(name = "actorFirstName", required = false) String firstName,
-                              @RequestParam(name = "actorLastName", required = false) String lastName)
+    List<ActorDTO> getActorsByName(@RequestParam(name = "fullName", required = false) String fullName)
     {
-        if (firstName != null || lastName != null)
-        {
-            return actorRepository.findByFirstNameContainingAndLastNameContainingOrderByLastName(firstName, lastName);
-        }
-        return actorRepository.findAll();
+        return actorService.getActorsByName(fullName)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping(params = {"actorId"})
+    public @ResponseBody
+    ActorDTO getActorById(@RequestParam(name = "actorId", required = false) Integer actorId)
+    {
+        return convertToDTO(actorService.getActorById(actorId));
     }
 
     @GetMapping(params = {"filmId"})
     public @ResponseBody
-    List<Actor> GetFilmActors(@RequestParam(name = "filmId") Integer filmId)
+    List<ActorDTO> getActorsByFilm(@RequestParam(name = "filmId") Integer filmId)
     {
-        return actorRepository.findByActorFilmsFilmFilmId(filmId);
+        return actorService.getActorsByFilm(filmId)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
-    @PostMapping(params = {"actorFirstName", "actorLastName"})
-    public @ResponseBody String addNewActor(@RequestParam String actorFirstName,
-                                            @RequestParam String actorLastName)
+    @PostMapping
+    public @ResponseBody
+    ResponseEntity<ActorDTO> createActor(@RequestBody ActorDTO actorDTO)
     {
-        Actor actor = new Actor(actorFirstName, actorLastName);
-        System.out.println(actorFirstName + " " + actorLastName);
-        actorRepository.save(actor);
-        return "saved";
+        Integer actorId = actorService.createActor(actorDTO);
+        Actor actor = actorService.getActorById(actorId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(convertToDTO(actor));
     }
 
-    @PatchMapping(params = {"actorId", "actorFirstName", "actorLastName"})
-    public @ResponseBody String updateActorById(@RequestParam int actorId, @RequestParam String actorFirstName, @RequestParam String actorLastName)
+    @PatchMapping(params = {"actorId"})
+    public @ResponseBody
+    ResponseEntity<ActorDTO> updateActor(@RequestParam Integer actorId, @RequestBody ActorDTO actorDTO)
     {
-        Actor actor = actorRepository
-                .findById(actorId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No actor exists with that id."));
-        actor.setFirstName(actorFirstName);
-        actor.setLastName(actorLastName);
-        actorRepository.save(actor);
-        return "saved";
+        actorService.updateActor(actorId, actorDTO);
+        Actor actor = actorService.getActorById(actorId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(convertToDTO(actor));
     }
 
     @DeleteMapping(params = {"actorId"})
     public @ResponseBody
-    void deleteActorById(@RequestParam int actorId)
+    void deleteActor(@RequestParam Integer actorId)
     {
-        actorRepository.deleteById(actorId);
+        actorService.deleteActor(actorId);
     }
 
 
+    private ActorDTO convertToDTO(Actor actor) {
+        ActorDTO actorDTO = modelMapper.map(actor, ActorDTO.class);
+        return actorDTO;
+    }
 }

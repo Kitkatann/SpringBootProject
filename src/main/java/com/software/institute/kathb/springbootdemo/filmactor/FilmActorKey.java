@@ -8,35 +8,35 @@ import java.io.Serializable;
 public class FilmActorKey implements Serializable {
 
     @Column(name = "actor_id")
-    private int actorId;
+    private Integer actorId;
 
     @Column(name = "film_id")
-    private int filmId;
+    private Integer filmId;
 
     public FilmActorKey()
     {
 
     }
 
-    public FilmActorKey(int actorId, int filmId)
+    public FilmActorKey(Integer actorId, Integer filmId)
     {
         this.actorId = actorId;
         this.filmId = filmId;
     }
 
-    public int getActorId() {
+    public Integer getActorId() {
         return actorId;
     }
 
-    public void setActorId(int actorId) {
+    public void setActorId(Integer actorId) {
         this.actorId = actorId;
     }
 
-    public int getFilmId() {
+    public Integer getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(int filmId) {
+    public void setFilmId(Integer filmId) {
         this.filmId = filmId;
     }
 }

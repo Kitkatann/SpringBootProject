@@ -1,7 +1,6 @@
 package com.software.institute.kathb.springbootdemo.category;
 
-import com.software.institute.kathb.springbootdemo.film.Film;
-
+import com.software.institute.kathb.springbootdemo.filmcategory.FilmCategory;
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,18 +10,18 @@ public class Category {
     @Id
     @Column(name="category_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int categoryId;
+    private Integer categoryId;
     private String name;
     private String lastUpdate;
 
-    @ManyToMany(mappedBy = "filmCategories")
-    private Set<Film> categoryFilms;
+    @OneToMany(mappedBy = "category")
+    private Set<FilmCategory> categoryFilms;
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 

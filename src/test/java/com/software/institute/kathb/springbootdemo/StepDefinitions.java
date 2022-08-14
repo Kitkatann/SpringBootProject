@@ -7,12 +7,6 @@ import io.cucumber.java.en.When;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class IsItFriday {
-    static String isItFriday(String today) {
-        return today.equals("Friday") ? "Yeah" : "Nope";
-    }
-}
-
 public class StepDefinitions {
     private String firstName;
     private String firstNameAnswer;

@@ -1,6 +1,7 @@
 package com.software.institute.kathb.springbootdemo.actor;
 
 import com.software.institute.kathb.springbootdemo.filmactor.FilmActor;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,7 +13,7 @@ public class Actor {
     @Id
     @Column(name="actor_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int actorId;
+    private Integer actorId;
 
     //Attributes
     @Column(name="first_name")
@@ -20,6 +21,12 @@ public class Actor {
 
     @Column(name="last_name")
     private String lastName;
+
+    @Formula("concat(first_name, ' ', last_name)")
+    protected String fullName;
+
+    @Column(name="last_update", insertable=false, updatable=false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private String lastUpdate;
 
     @OneToMany(mappedBy = "actor")
     private Set<FilmActor> actorFilms;
@@ -29,16 +36,24 @@ public class Actor {
         this.lastName=lastName;
     }
 
-    //Empty Constructor
+    public Actor(ActorDTO actorDTO)
+    {
+        this.updateFromDTO(actorDTO);
+    }
+
     public Actor() {}
 
-    //Getter and Setters
+    public void updateFromDTO(ActorDTO actorDTO)
+    {
+        this.firstName = actorDTO.getFirstName().orElse(firstName);
+        this.lastName = actorDTO.getLastName().orElse(lastName);
+    }
 
-    public int getActorId() {
+    public Integer getActorId() {
         return actorId;
     }
 
-    public void setActorId(int actorId) {
+    public void setActorId(Integer actorId) {
         this.actorId = actorId;
     }
 
@@ -56,6 +71,14 @@ public class Actor {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
 }
