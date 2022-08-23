@@ -37,7 +37,7 @@ public class Category {
         return lastUpdate;
     }
 
-    public void setLastUpdate(String last_update) {
+    public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

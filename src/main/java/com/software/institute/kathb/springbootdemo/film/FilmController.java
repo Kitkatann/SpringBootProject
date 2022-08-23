@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -42,7 +41,7 @@ public class FilmController {
         return filmService.getFilmsByTitle(title)
                 .stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @GetMapping(params = {"categoryId"})
@@ -52,7 +51,7 @@ public class FilmController {
         return filmService.getFilmsByCategory(categoryId)
                 .stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @GetMapping(params = {"languageId"})
@@ -62,7 +61,7 @@ public class FilmController {
         return filmService.getFilmsByLanguage(languageId)
                 .stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @GetMapping(params = {"actorId"})
@@ -72,7 +71,7 @@ public class FilmController {
         return filmService.getFilmsByActor(actorId)
                 .stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @PostMapping
@@ -153,8 +152,7 @@ public class FilmController {
     }
 
     private FilmDTO convertToDTO(Film film) {
-        FilmDTO filmDTO = modelMapper.map(film, FilmDTO.class);
-        return filmDTO;
+        return modelMapper.map(film, FilmDTO.class);
     }
 
 }

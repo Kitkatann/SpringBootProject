@@ -31,7 +31,7 @@ public class ActorController {
         return actorService.getActorsByName(fullName)
                 .stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @GetMapping(params = {"actorId"})
@@ -48,7 +48,7 @@ public class ActorController {
         return actorService.getActorsByFilm(filmId)
                 .stream()
                 .map(this::convertToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @PostMapping
@@ -60,25 +60,24 @@ public class ActorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(convertToDTO(actor));
     }
 
-    @PatchMapping(params = {"actorId"})
+    @PatchMapping("/{actorId}")
     public @ResponseBody
-    ResponseEntity<ActorDTO> updateActor(@RequestParam Integer actorId, @RequestBody ActorDTO actorDTO)
+    ResponseEntity<ActorDTO> updateActor(@PathVariable Integer actorId, @RequestBody ActorDTO actorDTO)
     {
         actorService.updateActor(actorId, actorDTO);
         Actor actor = actorService.getActorById(actorId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(convertToDTO(actor));
     }
 
-    @DeleteMapping(params = {"actorId"})
+    @DeleteMapping("/{actorId}")
     public @ResponseBody
-    void deleteActor(@RequestParam Integer actorId)
+    void deleteActor(@PathVariable Integer actorId)
     {
         actorService.deleteActor(actorId);
     }
 
 
     private ActorDTO convertToDTO(Actor actor) {
-        ActorDTO actorDTO = modelMapper.map(actor, ActorDTO.class);
-        return actorDTO;
+        return modelMapper.map(actor, ActorDTO.class);
     }
 }
