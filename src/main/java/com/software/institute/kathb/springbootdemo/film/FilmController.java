@@ -91,18 +91,18 @@ public class FilmController {
         return ResponseEntity.status(HttpStatus.CREATED).body(convertToDTO(film));
     }
 
-    @PatchMapping(params = {"filmId"})
+    @PatchMapping("/{filmId}")
     public @ResponseBody
-    ResponseEntity<FilmDTO> updateFilm(@RequestParam Integer filmId, @RequestBody FilmDTO filmDTO)
+    ResponseEntity<FilmDTO> updateFilm(@PathVariable Integer filmId, @RequestBody FilmDTO filmDTO)
     {
         filmService.updateFilm(filmId, filmDTO);
         Film film = filmService.getFilmById(filmId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(convertToDTO(film));
     }
 
-    @DeleteMapping(params = {"filmId"})
+    @DeleteMapping("/{filmId}")
     public @ResponseBody
-    void deleteFilm(@RequestParam Integer filmId)
+    void deleteFilm(@PathVariable Integer filmId)
     {
         filmService.deleteFilm(filmId);
     }

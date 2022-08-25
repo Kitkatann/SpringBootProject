@@ -20,8 +20,8 @@ public class Language {
     @Column(name="last_update")
     private String lastUpdate;
 
-//    @OneToMany(mappedBy = "filmLanguage")
-//    private Set<Film> films;
+    @OneToMany(mappedBy = "filmLanguage")
+    private Set<Film> films;
 
     public Language()
     {
