@@ -133,6 +133,14 @@ public class Film {
         return originalFilmLanguage;
     }
 
+    public void setOriginalFilmLanguage(Language originalFilmLanguage) {
+        this.originalFilmLanguage = originalFilmLanguage;
+    }
+
+    public Integer getOriginalLanguageId() {
+        return originalLanguageId;
+    }
+
     public void setOriginalLanguageId(Integer originalLanguageId) {
         this.originalLanguageId = originalLanguageId;
     }
@@ -192,5 +200,4 @@ public class Film {
     public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-
 }

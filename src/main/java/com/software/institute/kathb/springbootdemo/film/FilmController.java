@@ -26,11 +26,20 @@ public class FilmController {
     @Autowired
     private ModelMapper modelMapper;
 
-    public FilmController(IFilmService filmService, IFilmActorService filmActorService, IFilmCategoryService filmCategoryService)
+    public FilmController(IFilmService filmService,
+                          IFilmActorService filmActorService,
+                          IFilmCategoryService filmCategoryService)
     {
         this.filmService = filmService;
         this.filmActorService = filmActorService;
         this.filmCategoryService = filmCategoryService;
+    }
+
+    @GetMapping("/{filmId}")
+    public @ResponseBody
+    Film getFilmById(@PathVariable Integer filmId)
+    {
+        return filmService.getFilmById(filmId);
     }
 
     @GetMapping(params = {"title"})

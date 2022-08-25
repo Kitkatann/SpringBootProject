@@ -33,9 +33,9 @@ public class ActorController {
                 .toList();
     }
 
-    @GetMapping(params = {"actorId"})
+    @GetMapping("/{actorId}")
     public @ResponseBody
-    ActorDTO getActorById(@RequestParam(name = "actorId", required = false) Integer actorId)
+    ActorDTO getActorById(@PathVariable Integer actorId)
     {
         return convertToDTO(actorService.getActorById(actorId));
     }
