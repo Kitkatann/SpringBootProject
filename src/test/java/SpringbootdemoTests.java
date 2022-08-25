@@ -20,7 +20,7 @@ public class SpringbootdemoTests {
 
     //--------------------- Actor entity tests----------------------------------------------------------------------
     @Test
-    public void test_getActorId() throws NoSuchFieldException, IllegalAccessException
+    void test_getActorId() throws NoSuchFieldException, IllegalAccessException
     {
         Actor actor = new Actor();
         final Field field = actor.getClass().getDeclaredField("actorId");
@@ -30,7 +30,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setActorId() throws NoSuchFieldException, IllegalAccessException
+    void test_setActorId() throws NoSuchFieldException, IllegalAccessException
     {
         Actor actor = new Actor();
         actor.setActorId(1);
@@ -40,7 +40,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getActorFirstName() throws NoSuchFieldException, IllegalAccessException
+    void test_getActorFirstName() throws NoSuchFieldException, IllegalAccessException
     {
         Actor actor = new Actor();
         final Field field = actor.getClass().getDeclaredField("firstName");
@@ -50,7 +50,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setActorFirstName() throws NoSuchFieldException, IllegalAccessException
+    void test_setActorFirstName() throws NoSuchFieldException, IllegalAccessException
     {
         Actor actor = new Actor();
         actor.setFirstName("John");
@@ -60,7 +60,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getActorLastName() throws NoSuchFieldException, IllegalAccessException
+    void test_getActorLastName() throws NoSuchFieldException, IllegalAccessException
     {
         Actor actor = new Actor();
         final Field field = actor.getClass().getDeclaredField("lastName");
@@ -70,7 +70,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setActorLastName() throws NoSuchFieldException, IllegalAccessException
+    void test_setActorLastName() throws NoSuchFieldException, IllegalAccessException
     {
         Actor actor = new Actor();
         actor.setLastName("Smith");
@@ -80,7 +80,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getActorLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_getActorLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         Actor actor = new Actor();
         final Field field = actor.getClass().getDeclaredField("lastUpdate");
@@ -90,7 +90,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setActorLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_setActorLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         Actor actor = new Actor();
         actor.setLastUpdate("220-08-21 05:03:42");
@@ -102,7 +102,7 @@ public class SpringbootdemoTests {
     //--------------------- Actor DTO tests----------------------------------------------------------------------
 
     @Test
-    public void test_getActorDTOId() throws NoSuchFieldException, IllegalAccessException
+    void test_getActorDTOId() throws NoSuchFieldException, IllegalAccessException
     {
         ActorDTO actorDTO = new ActorDTO();
         final Field field = actorDTO.getClass().getDeclaredField("actorId");
@@ -113,7 +113,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setActorDTOId() throws NoSuchFieldException, IllegalAccessException
+    void test_setActorDTOId() throws NoSuchFieldException, IllegalAccessException
     {
         ActorDTO actorDTO = new ActorDTO();
         actorDTO.setActorId(1);
@@ -123,7 +123,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getActorDTOFirstName() throws NoSuchFieldException, IllegalAccessException
+    void test_getActorDTOFirstName() throws NoSuchFieldException, IllegalAccessException
     {
         ActorDTO actorDTO = new ActorDTO();
         final Field field = actorDTO.getClass().getDeclaredField("firstName");
@@ -134,7 +134,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setActorDTOFirstName() throws NoSuchFieldException, IllegalAccessException
+    void test_setActorDTOFirstName() throws NoSuchFieldException, IllegalAccessException
     {
         ActorDTO actorDTO = new ActorDTO();
         actorDTO.setFirstName("John");
@@ -144,7 +144,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getActorDTOLastName() throws NoSuchFieldException, IllegalAccessException
+    void test_getActorDTOLastName() throws NoSuchFieldException, IllegalAccessException
     {
         ActorDTO actorDTO = new ActorDTO();
         final Field field = actorDTO.getClass().getDeclaredField("lastName");
@@ -155,7 +155,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setActorDTOLastName() throws NoSuchFieldException, IllegalAccessException
+    void test_setActorDTOLastName() throws NoSuchFieldException, IllegalAccessException
     {
         ActorDTO actorDTO = new ActorDTO();
         actorDTO.setLastName("Smith");
@@ -165,7 +165,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getActorDTOLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_getActorDTOLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         ActorDTO actorDTO = new ActorDTO();
         final Field field = actorDTO.getClass().getDeclaredField("lastUpdate");
@@ -176,7 +176,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setActorDTOLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_setActorDTOLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         ActorDTO actorDTO = new ActorDTO();
         actorDTO.setLastUpdate("220-08-21 05:03:42");
@@ -188,7 +188,7 @@ public class SpringbootdemoTests {
     //--------------------- Film tests----------------------------------------------------------------------
 
     @Test
-    public void test_getFilmId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmId() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("filmId");
@@ -198,7 +198,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmId() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setFilmId(1);
@@ -208,7 +208,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmTitle() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmTitle() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("title");
@@ -218,7 +218,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmTitle() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmTitle() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setTitle("test title");
@@ -228,7 +228,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDescription() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDescription() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("description");
@@ -238,7 +238,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDescription() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDescription() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setDescription("test description");
@@ -248,7 +248,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmReleaseYear() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmReleaseYear() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("releaseYear");
@@ -258,7 +258,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmReleaseYear() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmReleaseYear() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setReleaseYear("2020");
@@ -269,7 +269,7 @@ public class SpringbootdemoTests {
 
 
     @Test
-    public void test_getFilmLanguage() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmLanguage() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("filmLanguage");
@@ -281,7 +281,29 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmLanguageId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmLanguage() throws NoSuchFieldException, IllegalAccessException
+    {
+        Film film = new Film();
+        Language language = new Language();
+        film.setFilmLanguage(language);
+        final Field field = film.getClass().getDeclaredField("filmLanguage");
+        field.setAccessible(true);
+        assertEquals(language, field.get(film), "Set film language didn't work as expected");
+    }
+
+    @Test
+    void test_getFilmLanguageId() throws NoSuchFieldException, IllegalAccessException
+    {
+        Film film = new Film();
+        final Field field = film.getClass().getDeclaredField("languageId");
+        field.setAccessible(true);
+        film.setLanguageId(1);
+        field.set(film, 1);
+        assertEquals(1, film.getLanguageId(), "Cannot get film language id");
+    }
+
+    @Test
+    void test_setFilmLanguageId() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setLanguageId(1);
@@ -291,7 +313,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmOriginalLanguage() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmOriginalLanguage() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("originalFilmLanguage");
@@ -303,7 +325,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmOriginalLanguageId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmOriginalLanguageId() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setOriginalLanguageId(1);
@@ -313,7 +335,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmRentalDuration() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmRentalDuration() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("rentalDuration");
@@ -323,7 +345,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmRentalDuration() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmRentalDuration() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setRentalDuration(23);
@@ -333,7 +355,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmRentalRate() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmRentalRate() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("rentalRate");
@@ -343,7 +365,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmRentalRate() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmRentalRate() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setRentalRate(4.99);
@@ -353,7 +375,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmLength() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmLength() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("length");
@@ -363,7 +385,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmLength() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmLength() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setLength(85);
@@ -373,7 +395,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmReplacementCost() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmReplacementCost() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("replacementCost");
@@ -383,7 +405,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmReplacementCost() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmReplacementCost() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setReplacementCost(7.45);
@@ -393,7 +415,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmRating() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmRating() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("rating");
@@ -403,7 +425,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmRating() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmRating() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setRating("PG");
@@ -413,7 +435,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmSpecialFeatures() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmSpecialFeatures() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("specialFeatures");
@@ -423,7 +445,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmSpecialFeatures() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmSpecialFeatures() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setSpecialFeatures("Directors cut");
@@ -433,7 +455,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         final Field field = film.getClass().getDeclaredField("lastUpdate");
@@ -443,7 +465,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         Film film = new Film();
         film.setLastUpdate("220-08-21 05:03:42");
@@ -455,7 +477,7 @@ public class SpringbootdemoTests {
     //--------------------- Film DTO tests----------------------------------------------------------------------
 
     @Test
-    public void test_getFilmDTOId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTOId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("filmId");
@@ -466,7 +488,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTOId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTOId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setFilmId(1);
@@ -476,7 +498,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTOTitle() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTOTitle() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("title");
@@ -487,7 +509,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTOTitle() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTOTitle() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setTitle("test title");
@@ -497,7 +519,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTODescription() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTODescription() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("description");
@@ -508,7 +530,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTODescription() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTODescription() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setDescription("test description");
@@ -518,7 +540,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTOReleaseYear() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTOReleaseYear() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("releaseYear");
@@ -529,7 +551,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTOReleaseYear() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTOReleaseYear() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setReleaseYear("2020");
@@ -539,7 +561,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTOLanguageId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTOLanguageId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("languageId");
@@ -550,7 +572,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTOLanguageId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTOLanguageId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setLanguageId(1);
@@ -560,7 +582,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTOOriginalLanguageId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTOOriginalLanguageId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("originalLanguageId");
@@ -571,7 +593,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTOOriginalLanguageId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTOOriginalLanguageId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setOriginalLanguageId(1);
@@ -581,7 +603,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTORentalDuration() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTORentalDuration() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("rentalDuration");
@@ -592,7 +614,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTORentalDuration() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTORentalDuration() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setRentalDuration(23);
@@ -602,7 +624,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTORentalRate() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTORentalRate() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("rentalRate");
@@ -613,7 +635,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTORentalRate() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTORentalRate() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setRentalRate(4.99);
@@ -623,7 +645,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTOLength() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTOLength() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("length");
@@ -634,7 +656,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTOLength() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTOLength() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setLength(85);
@@ -644,7 +666,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTOReplacementCost() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTOReplacementCost() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("replacementCost");
@@ -655,7 +677,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTOReplacementCost() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTOReplacementCost() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setReplacementCost(7.45);
@@ -665,7 +687,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTORating() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTORating() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("rating");
@@ -676,7 +698,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTORating() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTORating() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setRating("PG");
@@ -686,7 +708,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmDTOSpecialFeatures() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmDTOSpecialFeatures() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         final Field field = filmDTO.getClass().getDeclaredField("specialFeatures");
@@ -697,7 +719,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmDTOSpecialFeatures() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmDTOSpecialFeatures() throws NoSuchFieldException, IllegalAccessException
     {
         FilmDTO filmDTO = new FilmDTO();
         filmDTO.setSpecialFeatures("Directors cut");
@@ -709,7 +731,7 @@ public class SpringbootdemoTests {
     //--------------------- Category tests----------------------------------------------------------------------
 
     @Test
-    public void test_getCategoryId() throws NoSuchFieldException, IllegalAccessException
+    void test_getCategoryId() throws NoSuchFieldException, IllegalAccessException
     {
         Category category = new Category();
         final Field field = category.getClass().getDeclaredField("categoryId");
@@ -719,7 +741,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setCategoryId() throws NoSuchFieldException, IllegalAccessException
+    void test_setCategoryId() throws NoSuchFieldException, IllegalAccessException
     {
         Category category = new Category();
         category.setCategoryId(1);
@@ -729,7 +751,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getCategoryName() throws NoSuchFieldException, IllegalAccessException
+    void test_getCategoryName() throws NoSuchFieldException, IllegalAccessException
     {
         Category category = new Category();
         final Field field = category.getClass().getDeclaredField("name");
@@ -739,7 +761,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setCategoryName() throws NoSuchFieldException, IllegalAccessException
+    void test_setCategoryName() throws NoSuchFieldException, IllegalAccessException
     {
         Category category = new Category();
         category.setName("Horror");
@@ -749,7 +771,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getCategoryLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_getCategoryLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         Category category = new Category();
         final Field field = category.getClass().getDeclaredField("lastUpdate");
@@ -759,7 +781,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setCategoryLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_setCategoryLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         Category category = new Category();
         category.setLastUpdate("220-08-21 05:03:42");
@@ -771,7 +793,7 @@ public class SpringbootdemoTests {
     //--------------------- Language tests----------------------------------------------------------------------
 
     @Test
-    public void test_getLanguageId() throws NoSuchFieldException, IllegalAccessException
+    void test_getLanguageId() throws NoSuchFieldException, IllegalAccessException
     {
         Language language = new Language();
         final Field field = language.getClass().getDeclaredField("languageId");
@@ -781,7 +803,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setLanguageId() throws NoSuchFieldException, IllegalAccessException
+    void test_setLanguageId() throws NoSuchFieldException, IllegalAccessException
     {
         Language language = new Language();
         language.setLanguageId(1);
@@ -791,7 +813,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getLanguageName() throws NoSuchFieldException, IllegalAccessException
+    void test_getLanguageName() throws NoSuchFieldException, IllegalAccessException
     {
         Language language = new Language();
         final Field field = language.getClass().getDeclaredField("name");
@@ -801,7 +823,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setLanguageName() throws NoSuchFieldException, IllegalAccessException
+    void test_setLanguageName() throws NoSuchFieldException, IllegalAccessException
     {
         Language language = new Language();
         language.setName("English");
@@ -811,7 +833,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getLanguageLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_getLanguageLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         Language language = new Language();
         final Field field = language.getClass().getDeclaredField("lastUpdate");
@@ -821,7 +843,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setLanguageLastUpdate() throws NoSuchFieldException, IllegalAccessException
+    void test_setLanguageLastUpdate() throws NoSuchFieldException, IllegalAccessException
     {
         Language language = new Language();
         language.setLastUpdate("220-08-21 05:03:42");
@@ -833,7 +855,7 @@ public class SpringbootdemoTests {
     //--------------------- FilmActorKey tests----------------------------------------------------------------------
 
     @Test
-    public void test_getFilmActorKeyActorId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmActorKeyActorId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmActorKey filmActorKey = new FilmActorKey();
         final Field field = filmActorKey.getClass().getDeclaredField("actorId");
@@ -843,7 +865,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmActorKeyActorId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmActorKeyActorId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmActorKey filmActorKey = new FilmActorKey();
         filmActorKey.setActorId(1);
@@ -853,7 +875,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmActorKeyFilmId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmActorKeyFilmId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmActorKey filmActorKey = new FilmActorKey();
         final Field field = filmActorKey.getClass().getDeclaredField("filmId");
@@ -863,7 +885,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmActorKeyFilmId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmActorKeyFilmId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmActorKey filmActorKey = new FilmActorKey();
         filmActorKey.setFilmId(1);
@@ -875,7 +897,7 @@ public class SpringbootdemoTests {
     //--------------------- FilmActor tests----------------------------------------------------------------------
 
     @Test
-    public void test_getFilmActorId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmActorId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmActor filmActor = new FilmActor();
         final Field field = filmActor.getClass().getDeclaredField("id");
@@ -886,7 +908,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmActorId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmActorId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmActor filmActor = new FilmActor();
         FilmActorKey filmActorKey = new FilmActorKey();
@@ -899,7 +921,7 @@ public class SpringbootdemoTests {
     //--------------------- FilmCategoryKey tests----------------------------------------------------------------------
 
     @Test
-    public void test_getFilmCategoryKeyFilmId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmCategoryKeyFilmId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmCategoryKey filmCategoryKey = new FilmCategoryKey();
         final Field field = filmCategoryKey.getClass().getDeclaredField("filmId");
@@ -909,7 +931,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmCategoryKeyFilmId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmCategoryKeyFilmId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmCategoryKey filmCategoryKey = new FilmCategoryKey();
         filmCategoryKey.setFilmId(1);
@@ -919,7 +941,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_getFilmCategoryKeyCategoryId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmCategoryKeyCategoryId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmCategoryKey filmCategoryKey = new FilmCategoryKey();
         final Field field = filmCategoryKey.getClass().getDeclaredField("categoryId");
@@ -929,7 +951,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmCategoryKeyCategoryId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmCategoryKeyCategoryId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmCategoryKey filmCategoryKey = new FilmCategoryKey();
         filmCategoryKey.setCategoryId(1);
@@ -941,7 +963,7 @@ public class SpringbootdemoTests {
     //--------------------- FilmCategory tests----------------------------------------------------------------------
 
     @Test
-    public void test_getFilmCategoryId() throws NoSuchFieldException, IllegalAccessException
+    void test_getFilmCategoryId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmCategory filmCategory = new FilmCategory();
         final Field field = filmCategory.getClass().getDeclaredField("id");
@@ -952,7 +974,7 @@ public class SpringbootdemoTests {
     }
 
     @Test
-    public void test_setFilmCategoryId() throws NoSuchFieldException, IllegalAccessException
+    void test_setFilmCategoryId() throws NoSuchFieldException, IllegalAccessException
     {
         FilmCategory filmCategory = new FilmCategory();
         FilmCategoryKey filmCategoryKey = new FilmCategoryKey();

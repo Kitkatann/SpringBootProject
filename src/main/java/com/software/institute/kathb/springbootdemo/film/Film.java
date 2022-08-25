@@ -21,11 +21,11 @@ public class Film {
     @Column(name="release_year")
     private String releaseYear;
 
-    @Column(name="language_id")
+    @Column(name="language_id", nullable = false)
     private Integer languageId;
 
     @ManyToOne
-    @JoinColumn(name = "language_id", insertable = false, updatable = false)
+    @JoinColumn(name = "language_id", insertable = false, updatable = false, nullable = false)
     private Language filmLanguage;
 
     @Column(name="original_language_id")
@@ -115,6 +115,14 @@ public class Film {
 
     public Language getFilmLanguage() {
         return filmLanguage;
+    }
+
+    public void setFilmLanguage(Language filmLanguage) {
+        this.filmLanguage = filmLanguage;
+    }
+
+    public Integer getLanguageId() {
+        return languageId;
     }
 
     public void setLanguageId(Integer languageId) {
