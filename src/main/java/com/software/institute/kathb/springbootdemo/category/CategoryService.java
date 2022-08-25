@@ -15,4 +15,9 @@ public class CategoryService implements ICategoryService{
     {
         return categoryRepository.findAll();
     }
+
+    public Iterable<Category> getCategoriesByFilm(Integer filmId)
+    {
+        return categoryRepository.findByCategoryFilmsIdFilmId(filmId);
+    }
 }

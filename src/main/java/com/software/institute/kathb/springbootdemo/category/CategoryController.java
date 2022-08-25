@@ -1,10 +1,7 @@
 package com.software.institute.kathb.springbootdemo.category;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/category")
@@ -22,5 +19,12 @@ public class CategoryController {
     Iterable<Category> getAllCategories()
     {
         return categoryService.getAllCategories();
+    }
+
+    @GetMapping(params = {"filmId"})
+    public @ResponseBody
+    Iterable<Category> getCategoriesByFilm(@RequestParam(name = "filmId") Integer filmId)
+    {
+        return categoryService.getCategoriesByFilm(filmId);
     }
 }
